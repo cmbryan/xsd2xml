@@ -4,7 +4,7 @@ build:
 	poetry build
 
 test:
-	pytest
+	python -m pytest
 
 
 integration_test:
