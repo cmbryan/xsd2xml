@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "xsd2xml"
+version = "0.1.0"
+description = "Python module that generates XML matching an XSD and (optionally) regex constraints for the value of each tag."
+authors = ["Chris Bryan <chrismbryan@gmail.com>"]
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+xmlschema = "^2.2.3"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
