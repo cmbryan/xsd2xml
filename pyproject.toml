@@ -14,6 +14,9 @@ xmlschema = "^2.2.3"
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.2.2"
 
+[tool.poetry.scripts]
+cli_command_name = 'xsd2xml:main'
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
