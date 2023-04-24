@@ -21,6 +21,7 @@ if __name__ == "__main__":
     )
     parser.add_argument("--xsd", help="XML Schema", required=True)
     parser.add_argument("--constraints", nargs="?")
+    parser.add_argument("--xml", help="Output XML path", required=True)
 
     args = parser.parse_args()
     main(args)
