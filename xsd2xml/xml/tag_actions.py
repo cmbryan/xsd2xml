@@ -1,4 +1,4 @@
-from xsd2xml.xml_utils import tag_name
+from xsd2xml.xml.utils import tag_name
 
 
 def process_tag(elt, start_elt_cb, end_elt_cb):

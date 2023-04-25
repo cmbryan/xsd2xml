@@ -1,7 +1,7 @@
 from lxml import etree
 
 from tests.test_utils import TEST_DATA_DIR
-from xsd2xml import xml_utils, xsd_handling
+from xsd2xml.xml import tag_actions, utils
 
 indent_level = 0
 result = ""
@@ -10,7 +10,7 @@ result = ""
 def __start_tag(elt):
     """Example callback function"""
     global indent_level, result
-    name = xml_utils.tag_name(elt)  # Strip namespace
+    name = utils.tag_name(elt)  # Strip namespace
     if name == "element":
         result += f"{' ' * indent_level}{name} {elt.get('name').strip()}\n"
     else:
@@ -28,7 +28,7 @@ def __end_tag(elt):
 def test_process_element():
     """Check that we can load a schema and perform actions on the contents"""
     xsd = etree.parse(TEST_DATA_DIR / "example_schema.xsd")
-    xsd_handling.process_tag(xsd.getroot(), __start_tag, __end_tag)
+    tag_actions.process_tag(xsd.getroot(), __start_tag, __end_tag)
 
     assert (
         result
