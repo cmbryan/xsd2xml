@@ -11,7 +11,12 @@ def main(args):
             constraints = tomli.load(constraints_fh)
             print(f"todo, process {str(constraints)}")
 
+    # Parse the schema into an object tree
     print(f"todo, process {xsd.getroot().tag}")
+
+    # Use the schema object tree to progressively populate the database with objects
+
+    # Dump the DB to an XML file
 
 
 if __name__ == "__main__":
