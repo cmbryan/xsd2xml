@@ -1,4 +1,4 @@
-from xsd2xml import db
+from xsd2xml.db import db
 
 
 def test_db():

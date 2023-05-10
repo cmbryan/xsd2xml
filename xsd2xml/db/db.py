@@ -8,7 +8,7 @@ from pathlib import Path
 def xml_db():
     # Create temp database
     with tempfile.TemporaryDirectory() as dir, open(
-        Path(__file__).parent / "xml" / "model.sql"
+        Path(__file__).parent / "model.sql"
     ) as fh:
         db = sqlite3.connect(Path(dir) / "xml_db.sqlite3")
         db.executescript(fh.read())
