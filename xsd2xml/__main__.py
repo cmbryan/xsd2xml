@@ -1,22 +1,23 @@
 import argparse
 
-import tomli
+# import tomli
 from lxml import etree
+
+from xsd2xml.generate import generate_xml
 
 
 def main(args):
     xsd = etree.parse(args.xsd)
-    if args.constraints:
-        with open(args.constraints) as constraints_fh:
-            constraints = tomli.load(constraints_fh)
-            print(f"todo, process {str(constraints)}")
+    # if args.constraints:
+    #     with open(args.constraints) as constraints_fh:
+    #         constraints = tomli.load(constraints_fh)
+    #         print(f"todo, process {str(constraints)}")
 
-    # Parse the schema into an object tree
-    print(f"todo, process {xsd.getroot().tag}")
-
-    # Use the schema object tree to progressively populate the database with objects
-
-    # Dump the DB to an XML file
+    with open(args.xml, "w") as xml_fh:
+        generate_xml(
+            root_element=xsd.find("/{http://www.w3.org/2001/XMLSchema}element"),
+            out_stream=xml_fh,
+        )
 
 
 if __name__ == "__main__":
@@ -25,7 +26,7 @@ if __name__ == "__main__":
                    ptionally) regex constraints for the value of each tag."""
     )
     parser.add_argument("--xsd", help="XML Schema", required=True)
-    parser.add_argument("--constraints", nargs="?")
+    # parser.add_argument("--constraints", nargs="?")
     parser.add_argument("--xml", help="Output XML path", required=True)
 
     args = parser.parse_args()

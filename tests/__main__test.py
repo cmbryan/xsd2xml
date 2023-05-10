@@ -15,13 +15,13 @@ def test_version():
 def test_main(tmp_path: Path):
     """Really an end2end test"""
     args = Namespace(
-        xsd=str(TEST_DATA_DIR / "example_schema.xsd"),
-        constraints=None,
+        xsd=str(TEST_DATA_DIR / "simple_schema_1.xsd"),
+        # constraints=None,
         xml=str(tmp_path / "out.xml"),
     )
 
     main(args)
 
-    # # pick up here by examining args.xml
-    # doc = etree.parse(args.xml)
-    # assert 0
+    schema = etree.XMLSchema(etree.parse(args.xsd))
+    output = etree.parse(args.xml)
+    assert schema.validate(output)

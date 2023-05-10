@@ -21,10 +21,15 @@ def create_xsd_dict(elt: etree.Element) -> Dict:
         return [create_xsd_dict(ch) for ch in elt]
 
     elif elt.tag == f"{ns_map['xs']}choice":
-        return [create_xsd_dict(choice(elt))]
+        return create_xsd_dict(choice(elt))
 
     elif elt.tag == f"{ns_map['xs']}element":
-        return {elt.get("name"): [create_xsd_dict(ch) for ch in elt]}
+        assert len(elt) <= 1
+        if len(elt):
+            return {elt.get("name"): create_xsd_dict(elt[0])}
+        else:
+            return {elt.get("name"): []}
 
     else:
-        assert False  # TODO
+        # TODO
+        raise Exception(f"Unsupported schema element: {elt.tag}")
